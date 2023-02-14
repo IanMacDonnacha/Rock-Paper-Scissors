@@ -1,6 +1,4 @@
-function getComputerChoice(computerChoice) {
-    computerChoice = Math.random();
-    return computerChoice;
+function getComputerChoice(max) {
+    return Math.floor(Math.random() * max);
 }
-
-console.log(getComputerChoice(1))
+console.log(getComputerChoice(3))
