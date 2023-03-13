@@ -1,5 +1,12 @@
-function getComputerChoice(choice) {
-    choice = ['Rock', 'Paper', 'Scissors']
-    return Math.floor(Math.random() * choice.length );
+function generateChoice() {
+    choice = Math.floor(Math.random() * 3 );
+    if (choice === 0) {
+        return "Rock"
+    } else if (choice === 1) {
+        return "Paper"
+    }else {
+        return "Scissors"
+    }
 }
-console.log(getComputerChoice(3))
+
+console.log(generateChoice())
