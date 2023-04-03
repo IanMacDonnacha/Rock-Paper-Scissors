@@ -8,30 +8,48 @@ function generateChoice() {
         return "Scissors";
     }
 };
-console.log(generateChoice())
 
-//Lots of repetitive code here.
 function playGame(playerSelection, computerSelection){
-    player = playerSelection.toLowerCase()
-    computer = computerSelection.toLowerCase()
+    player = playerSelection.toLowerCase();
+    computer = computerSelection.toLowerCase();
+
     if (player === "rock" && computer === "scissors"){
-        return "Player, you are the winner!"
+        return 1;
     }else if (player === "rock" && computer === "paper"){
-        return "Computer, you are the winner!"
+        return 0;
     }else if (player === "paper" && computer === "scissors"){
-        return "Computer, you are the winner!"
+        return 0;
     }else if (player === "paper" && computer === "rock"){
-        return "Player, you are the winner!"
+        return 1;
     }else if (player === "scissors" && computer === "rock"){
-        return "Computer, you are the winner!"
+        return 0;
     }else if (player === "scissors" && computer === "paper"){
-        return "Player, you are the winner!"
+        return 1;
     }else {
         return "It is a draw!"
     }
 }
 
-const playerSelection = "Rock"
-const computerSelection = generateChoice()
+function game(){
+    let playerScore = 0;
+    let computerScore = 0;
+    for (let i = 0; i < 5; i++){
+        let playerSelection = prompt("Rock, Paper or Scissors?: ")
+        let computerSelection = generateChoice();
+        let game = playGame(playerSelection, computerSelection);
+        console.log(game)
+        if (game == 1){
+            playerScore += 1;
+        } else {
+            computerScore += 1;
+        }
+    }
+    if (playerScore > computerScore){
+        return `Player you won ${playerScore} rounds out of 5, you are the winner!`
+    }else {
+        return `Computer you won ${computerScore} rounds out of 5, you are the winner!`
+    }
+}
 
-console.log(playGame(playerSelection,computerSelection))
+
+console.log(game())
