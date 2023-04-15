@@ -4,23 +4,21 @@ const scissors = document.querySelector(".scissors");
 
     
 rock.addEventListener("click", () => {
-    game("Rock");
+    game("rock");
 })
 paper.addEventListener("click", () =>{
-    game("Paper");
+    game("paper");
 })
 scissors.addEventListener("click", () => {
-    game("Scissors");
+    game("scissors");
 })
 
-
-
-function generateChoice() {
+function generateComputerChoice() {
     const options = ["rock", "paper", "scissors"]
     return options[Math.floor(Math.random() * options.length)];
 };
 
-function playGame(playerSelection, computerSelection){
+function gameLogic(playerSelection, computerSelection){
     if (playerSelection === computerSelection){
         return "tie";
     } else if ((playerSelection === "rock" && computerSelection === "scissors")||
@@ -32,28 +30,23 @@ function playGame(playerSelection, computerSelection){
     }    
 }
 
+function playRounds(){
+    rounds = 0
+    playerScore = 0
+    computerScore = 0
+
+}
 
 function game(playerSelection){
-    let rounds = 0
-    let playerScore = 0;
-    let computerScore = 0;
-    while (rounds < 5){
-        let cpuChoice = generateChoice();
-        let game = playGame(playerSelection, cpuChoice);
-        console.log(playerSelection)
-        console.log(cpuChoice)
-        if (game === "player"){
-            playerScore ++;
-        } else if (game === "cpu") {
-            computerScore ++;
-        } else {
-            console.log("its a tie")
-        }
-        rounds++;
-    }
-    if (playerScore > computerScore){
-        return `Player you won ${playerScore} rounds out of 5, you are the winner!`
-    }else {
-        return `Computer you won ${computerScore} rounds out of 5, you are the winner!`
+    let cpuChoice = generateComputerChoice();
+    let winner = gameLogic(playerSelection, cpuChoice);
+    console.log(playerSelection)
+    console.log(cpuChoice)
+    if (winner === "player"){
+        console.log(`Player, you are the winner!`)
+    }else if (winner === "cpu") {
+        console.log( `Computer, you are the winner!`)
+    }else{
+        console.log("Draw")
     }
 }
