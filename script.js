@@ -16,14 +16,8 @@ scissors.addEventListener("click", () => {
 
 
 function generateChoice() {
-    choice = Math.floor(Math.random() * 3 );
-    if (choice === 0) {
-        return "Rock";
-    }else if (choice === 1) {
-        return "Paper";
-    }else {
-        return "Scissors";
-    }
+    const options = ["rock", "paper", "scissors"]
+    return options[Math.floor(Math.random() * options.length)];
 };
 
 function playGame(playerSelection, computerSelection){
@@ -48,10 +42,12 @@ function game(playerSelection){
         let game = playGame(playerSelection, cpuChoice);
         console.log(playerSelection)
         console.log(cpuChoice)
-        if (game == 1){
+        if (game === "player"){
             playerScore ++;
-        } else {
+        } else if (game === "cpu") {
             computerScore ++;
+        } else {
+            console.log("its a tie")
         }
         rounds++;
     }
@@ -61,5 +57,3 @@ function game(playerSelection){
         return `Computer you won ${computerScore} rounds out of 5, you are the winner!`
     }
 }
-
-console.log(game())
