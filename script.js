@@ -27,23 +27,14 @@ function generateChoice() {
 };
 
 function playGame(playerSelection, computerSelection){
-    player = playerSelection;
-    computer = computerSelection;
-
-    if (player === "Rock" && computer === "Scissors"){
-        return 1;
-    }else if (player === "Rock" && computer === "Paper"){
-        return 0;
-    }else if (player === "Paper" && computer === "Scissors"){
-        return 0;
-    }else if (player === "Paper" && computer === "Rock"){
-        return 1;
-    }else if (player === "Scissors" && computer === "Rock"){
-        return 0;
-    }else if (player === "Scissors" && computer === "Paper"){
-        return 1;
-    }else {
-        return "It is a draw!"
+    if (playerSelection === computerSelection){
+        return "tie";
+    } else if ((playerSelection === "rock" && computerSelection === "scissors")||
+              (playerSelection === "paper" && computerSelection === "rock") ||
+              (playerSelection === "scissors" && computerSelection === "paper")){
+        return "player";
+    } else {
+        return "cpu"
     }    
 }
 
