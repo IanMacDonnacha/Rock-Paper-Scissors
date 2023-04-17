@@ -80,6 +80,7 @@ button{
 .cpu-container {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 720px;
     height: 720px;
 }
@@ -91,4 +92,9 @@ button{
 
 .cpu-img {
     align-self: center;
+}
+
+.empty-div {
+    height: 77.5px;
+    margin-bottom: 10px;
 }
