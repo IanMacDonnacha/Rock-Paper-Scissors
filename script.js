@@ -1,22 +1,82 @@
-const rock = document.querySelector(".rock");
-const paper = document.querySelector(".paper");
-const scissors = document.querySelector(".scissors");
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+const playerImg = document.querySelector(".img-container")
+const cpuImg = document.querySelector(".cpu-img")
+const button = document.querySelectorAll(".button")
+const announce = document.querySelector(".announce-container")
 
     
 rock.addEventListener("click", () => {
     game("rock");
-})
+    const img = document.createElement("img");
+    img.src = "img/rock-paper-scissors-296854__340.webp";
+    playerImg.appendChild(img);
+    button.forEach((btn) => {
+        btn.disabled = true;
+    })
+    setTimeout(() => {
+        img.remove();
+        button.forEach((btn) => {
+            btn.disabled = false;
+        });
+    }, 5000);
+});
+
 paper.addEventListener("click", () =>{
     game("paper");
-})
+    const img = document.createElement("img");
+    img.src = "img/rock-paper-scissors-296855__340.webp";
+    playerImg.appendChild(img);
+    button.forEach((btn) => {
+        btn.disabled = true;
+    })
+    setTimeout(() => {
+        img.remove();
+        button.forEach((btn) => {
+            btn.disabled = false;
+        });
+    }, 5000);
+});
 scissors.addEventListener("click", () => {
     game("scissors");
-})
+    const img = document.createElement("img");
+    img.src = "img/rock-paper-scissors-296853__340.webp";
+    playerImg.appendChild(img);
+    button.forEach((btn) => {
+        btn.disabled = true;
+    })
+    setTimeout(() => {
+        img.remove();
+        button.forEach((btn) => {
+            btn.disabled = false;
+        });
+    }, 5000);
+});
 
 function generateComputerChoice() {
     const options = ["rock", "paper", "scissors"]
     return options[Math.floor(Math.random() * options.length)];
 };
+
+function printCpuChoice (cpuChoice) {
+    const img =document.createElement("img");
+    if (cpuChoice === "rock") {
+        img.src = "img/rock-paper-scissors-296854__340.webp"
+        cpuImg.appendChild(img);
+    } else if (cpuChoice === "paper"){
+        img.src = "img/rock-paper-scissors-296855__340.webp"
+        cpuImg.appendChild(img);
+    }else {
+        img.src = "img/rock-paper-scissors-296853__340.webp"
+        cpuImg.appendChild(img);
+    }
+    setTimeout(() => {
+        img.remove()
+    }, 5000)
+}
+
+
 
 function gameLogic(playerSelection, computerSelection){
     if (playerSelection === computerSelection){
@@ -37,16 +97,29 @@ function playRounds(){
 
 }
 
+function announceWinner (text) {
+    announce.style.display = "block"
+    if (text === "player") {
+        announce.innerHTML = "Player you are the winner"
+    } else if (text === "cpu") {
+        announce.innerHTML = "Computer you are the winner"
+    } else {
+        announce.innerHTML = "It is a draw!"
+    }
+    setTimeout(() => {
+        announce.style.display = "none";
+    }, 5000)
+}
+
 function game(playerSelection){
     let cpuChoice = generateComputerChoice();
+    printCpuChoice(cpuChoice);
     let winner = gameLogic(playerSelection, cpuChoice);
-    console.log(playerSelection)
-    console.log(cpuChoice)
     if (winner === "player"){
-        console.log(`Player, you are the winner!`)
+        announceWinner("player")
     }else if (winner === "cpu") {
-        console.log( `Computer, you are the winner!`)
+        announceWinner("cpu")
     }else{
-        console.log("Draw")
+        announceWinner("draw")
     }
 }
