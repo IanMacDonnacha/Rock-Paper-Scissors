@@ -3,12 +3,38 @@ const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 const playerImg = document.querySelector(".img-container")
 const cpuImg = document.querySelector(".cpu-img")
-const button = document.querySelectorAll(".button")
+const selectionButtons = document.querySelectorAll("[data-selection]")
 const announce = document.querySelector(".announce-container")
 
+selectionButtons.forEach(selectionButton => {
+    selectionButton.addEventListener("click", e => {
+        selectionName = selectionButton.dataset.selection;
+        game(selectionName);
+        const img = document.createElement("img");
+        if (selectionName === "rock") {
+            img.src = "img/rock-paper-scissors-296854__340.webp";
+        }else if (selectionName === "paper"){
+            img.src = "img/rock-paper-scissors-296855__340.webp"; 
+        }else {
+            img.src = "img/rock-paper-scissors-296853__340.webp";  
+        }
+        playerImg.appendChild(img);
+        selectionButtons.forEach((btn) => {
+            btn.disabled = true;
+        })
+        setTimeout(() => {
+            img.remove();
+            selectionButtons.forEach((btn) => {
+                btn.disabled = false;
+            });
+        }, 5000);
+    });
+});
+ 
+/*
     
 rock.addEventListener("click", () => {
-    game("rock");
+    playRounds("rock");
     const img = document.createElement("img");
     img.src = "img/rock-paper-scissors-296854__340.webp";
     playerImg.appendChild(img);
@@ -53,7 +79,7 @@ scissors.addEventListener("click", () => {
         });
     }, 5000);
 });
-
+*/
 function generateComputerChoice() {
     const options = ["rock", "paper", "scissors"]
     return options[Math.floor(Math.random() * options.length)];
@@ -90,12 +116,6 @@ function gameLogic(playerSelection, computerSelection){
     }    
 }
 
-function playRounds(){
-    rounds = 0
-    playerScore = 0
-    computerScore = 0
-
-}
 
 function announceWinner (text) {
     announce.style.display = "block"
@@ -122,4 +142,13 @@ function game(playerSelection){
     }else{
         announceWinner("draw")
     }
+}
+
+function playRounds(playerSelection){
+    rounds = 5
+    playerScore = 0
+    computerScore = 0
+   
+        return;
+    
 }

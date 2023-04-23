@@ -75,6 +75,11 @@ button{
     text-align: center;
     text-decoration: none;
     border-radius: 5px;
+    transition: 100ms;
+}
+
+button:hover {
+    transform: scale(1.2);
 }
 
 .cpu-container {
