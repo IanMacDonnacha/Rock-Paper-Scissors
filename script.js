@@ -1,10 +1,9 @@
-const rock = document.querySelector("#rock");
-const paper = document.querySelector("#paper");
-const scissors = document.querySelector("#scissors");
 const playerImg = document.querySelector(".img-container")
 const cpuImg = document.querySelector(".cpu-img")
 const selectionButtons = document.querySelectorAll("[data-selection]")
 const announce = document.querySelector(".announce-container")
+const computerScoreSpan = document.querySelector("[data-computer-score]")
+const playerScoreSpan = document.querySelector("[data-your-score]")
 
 selectionButtons.forEach(selectionButton => {
     selectionButton.addEventListener("click", e => {
@@ -31,55 +30,6 @@ selectionButtons.forEach(selectionButton => {
     });
 });
  
-/*
-    
-rock.addEventListener("click", () => {
-    playRounds("rock");
-    const img = document.createElement("img");
-    img.src = "img/rock-paper-scissors-296854__340.webp";
-    playerImg.appendChild(img);
-    button.forEach((btn) => {
-        btn.disabled = true;
-    })
-    setTimeout(() => {
-        img.remove();
-        button.forEach((btn) => {
-            btn.disabled = false;
-        });
-    }, 5000);
-});
-
-paper.addEventListener("click", () =>{
-    game("paper");
-    const img = document.createElement("img");
-    img.src = "img/rock-paper-scissors-296855__340.webp";
-    playerImg.appendChild(img);
-    button.forEach((btn) => {
-        btn.disabled = true;
-    })
-    setTimeout(() => {
-        img.remove();
-        button.forEach((btn) => {
-            btn.disabled = false;
-        });
-    }, 5000);
-});
-scissors.addEventListener("click", () => {
-    game("scissors");
-    const img = document.createElement("img");
-    img.src = "img/rock-paper-scissors-296853__340.webp";
-    playerImg.appendChild(img);
-    button.forEach((btn) => {
-        btn.disabled = true;
-    })
-    setTimeout(() => {
-        img.remove();
-        button.forEach((btn) => {
-            btn.disabled = false;
-        });
-    }, 5000);
-});
-*/
 function generateComputerChoice() {
     const options = ["rock", "paper", "scissors"]
     return options[Math.floor(Math.random() * options.length)];
@@ -137,18 +87,15 @@ function game(playerSelection){
     let winner = gameLogic(playerSelection, cpuChoice);
     if (winner === "player"){
         announceWinner("player")
+        let ply = incrementScore(playerScoreSpan);
     }else if (winner === "cpu") {
         announceWinner("cpu")
+        let cpu = incrementScore(computerScoreSpan);
     }else{
         announceWinner("draw")
     }
 }
 
-function playRounds(playerSelection){
-    rounds = 5
-    playerScore = 0
-    computerScore = 0
-   
-        return;
-    
+function incrementScore(scoreSpan) {
+    scoreSpan.innerText = parseInt(scoreSpan.innerText) + 1;
 }

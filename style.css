@@ -32,13 +32,14 @@ body {
     margin: 50px 350px;
     background-color: whitesmoke;
     position: relative;
+   
 }
 
 .user-container {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    width: 720px;
+    width: 950px;
     height: 720px;
     border-style: none dashed none none;
 }
@@ -86,7 +87,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 720px;
+    width: 950px;
     height: 720px;
 }
 
@@ -102,4 +103,10 @@ button:hover {
 .empty-div {
     height: 77.5px;
     margin-bottom: 10px;
+}
+
+.result-score {
+    margin-left: .1rem;
+    font-size: 38px;
+    color: #969292;
 }
